@@ -54,5 +54,8 @@ zip -r full-x86_64.jar                   lib/x86_64/*.so
 
 md5sum *.jar
 
-echo "Output dir: $(realpath ../../../../../../../../output)"
+mkdir -p /home/runner/work/libmpv-android-video-build/libmpv-android-video-build/output
+cp *.jar /home/runner/work/libmpv-android-video-build/libmpv-android-video-build/output/
+
+echo "Output dir: $(realpath /home/runner/work/libmpv-android-video-build/libmpv-android-video-build/output)"
 echo "Script dir: $(cd "$(dirname "$0")"; pwd)"
