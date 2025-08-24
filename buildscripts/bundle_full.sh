@@ -75,10 +75,3 @@ mkdir -p ../../../../../../../../../../output
 cp *.jar ../../../../../../../../../../output
 
 md5sum *.jar
-
-cd ../../../../../../../../..
-
-# --------------------------------------------------
-
-zip -r debug-symbols-full.zip prefix/*/lib
-cp debug-symbols-full.zip ../output
