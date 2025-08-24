@@ -50,7 +50,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: artifact
-          path: ./output/*
+          path: ./buildscripts/*.jar
       - uses: softprops/action-gh-release@v1
         if: github.ref == 'refs/heads/main'
         with:
@@ -58,4 +58,4 @@ jobs:
           prerelease: false
           tag_name: "v1.0.0"
           files: |
-            output/*
+            buildscripts/*.jar

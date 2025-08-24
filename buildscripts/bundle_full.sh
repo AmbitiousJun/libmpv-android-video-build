@@ -43,6 +43,3 @@ zip -r full-x86.jar                      prefix/x86/usr/local/lib/*.so
 zip -r full-x86_64.jar                   prefix/x86_64/usr/local/lib/*.so
 
 # md5sum *.jar
-
-mkdir -p output
-mv full-*.jar output/
