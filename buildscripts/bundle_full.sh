@@ -30,49 +30,25 @@ sudo chmod +x gradlew
 
 unzip -o app/build/outputs/apk/release/app-release.apk -d app/build/outputs/apk/release
 
-ln -sf "$(pwd)/app/build/outputs/apk/release/lib/arm64-v8a/libmediakitandroidhelper.so" "../../../libmpv/src/main/jniLibs/arm64-v8a"
-ln -sf "$(pwd)/app/build/outputs/apk/release/lib/armeabi-v7a/libmediakitandroidhelper.so" "../../../libmpv/src/main/jniLibs/armeabi-v7a"
-ln -sf "$(pwd)/app/build/outputs/apk/release/lib/x86/libmediakitandroidhelper.so" "../../../libmpv/src/main/jniLibs/x86"
-ln -sf "$(pwd)/app/build/outputs/apk/release/lib/x86_64/libmediakitandroidhelper.so" "../../../libmpv/src/main/jniLibs/x86_64"
+mkdir -p lib/arm64-v8a
+mkdir -p lib/armeabi-v7a
+mkdir -p lib/x86
+mkdir -p lib/x86_64
 
-cd ../..
+cp app/build/outputs/apk/release/lib/arm64-v8a/libmediakitandroidhelper.so      lib/arm64-v8a
+cp app/build/outputs/apk/release/lib/armeabi-v7a/libmediakitandroidhelper.so    lib/armeabi-v7a
+cp app/build/outputs/apk/release/lib/x86/libmediakitandroidhelper.so            lib/x86
+cp app/build/outputs/apk/release/lib/x86_64/libmediakitandroidhelper.so         lib/x86_64
 
-# --------------------------------------------------
+cp ../../prefix/arm64-v8a/usr/local/lib/*.so lib/arm64-v8a
+cp ../../prefix/armeabi-v7a/usr/local/lib/*.so lib/armeabi-v7a
+cp ../../prefix/x86/usr/local/lib/*.so lib/x86
+cp ../../prefix/x86_64/usr/local/lib/*.so lib/x86_64
 
-cd deps/media_kit/media_kit_native_event_loop
-
-flutter create --org com.alexmercerind --template plugin_ffi --platforms=android .
-
-if ! grep -q android "pubspec.yaml"; then
-  printf "      android:\n        ffiPlugin: true\n" >> pubspec.yaml
-fi
-
-flutter pub get
-
-cp -a ../../mpv/libmpv/. src/include/
-
-cd example
-
-flutter clean
-flutter build apk --release
-
-unzip -o build/app/outputs/apk/release/app-release.apk -d build/app/outputs/apk/release
-
-cd build/app/outputs/apk/release/
-
-# --------------------------------------------------
-
-rm -r lib/*/libapp.so
-rm -r lib/*/libflutter.so
-
-zip -r "full-arm64-v8a.jar"                lib/arm64-v8a
-zip -r "full-armeabi-v7a.jar"              lib/armeabi-v7a
-zip -r "full-x86.jar"                      lib/x86
-zip -r "full-x86_64.jar"                   lib/x86_64
-
-mkdir -p ../../../../../../../output
-
-cp *.jar ../../../../../../../output
+zip -r full-arm64-v8a.jar                lib/arm64-v8a/*.so
+zip -r full-armeabi-v7a.jar              lib/armeabi-v7a/*.so
+zip -r full-x86.jar                      lib/x86/*.so
+zip -r full-x86_64.jar                   lib/x86_64/*.so
 
 md5sum *.jar
 
