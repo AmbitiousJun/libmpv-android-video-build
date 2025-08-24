@@ -75,3 +75,6 @@ mkdir -p ../../../../../../../../../../output
 cp *.jar ../../../../../../../../../../output
 
 md5sum *.jar
+
+echo "Output dir: $(realpath ../../../../../../../../../../output)"
+echo "Script dir: $(cd "$(dirname "$0")"; pwd)"
