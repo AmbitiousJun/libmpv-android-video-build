@@ -45,6 +45,8 @@ loadarch () {
 	fi
 	export prefix_dir="$PWD/prefix/$prefix_name"
 	export native_dir="$PWD/../libmpv/src/main/jniLibs/$prefix_name"
+	echo "prefix dir: $prefix_dir"
+	echo "native dir: $native_dir"
 	export CC=$cc_triple-clang
 	if [[ "$1" == arm* ]]; then
 		export AS="$CC"
