@@ -72,10 +72,33 @@ cd build/app/outputs/apk/release/
 rm -r lib/*/libapp.so
 rm -r lib/*/libflutter.so
 
+# --------------------------------------------------
+
+mkdir -p temp_dir/lib/arm64-v8a
+mkdir -p temp_dir/lib/armeabi-v7a
+mkdir -p temp_dir/lib/x86
+mkdir -p temp_dir/lib/x86_64
+
+cp /home/runner/work/libmpv-android-video-build/libmpv-android-video-build/libmpv/src/main/jniLibs/armeabi-v7a/libmediakitandroidhelper.so temp_dir/lib/armeabi-v7a/
+cp /home/runner/work/libmpv-android-video-build/libmpv-android-video-build/libmpv/src/main/jniLibs/armeabi-v7a/libmpv.so temp_dir/lib/armeabi-v7a/
+cp /home/runner/work/libmpv-android-video-build/libmpv-android-video-build/libmpv/src/main/jniLibs/arm64-v8a/libmediakitandroidhelper.so temp_dir/lib/arm64-v8a/
+cp /home/runner/work/libmpv-android-video-build/libmpv-android-video-build/libmpv/src/main/jniLibs/arm64-v8a/libmpv.so temp_dir/lib/arm64-v8a/
+cp /home/runner/work/libmpv-android-video-build/libmpv-android-video-build/libmpv/src/main/jniLibs/x86/libmediakitandroidhelper.so temp_dir/lib/x86/
+cp /home/runner/work/libmpv-android-video-build/libmpv-android-video-build/libmpv/src/main/jniLibs/x86/libmpv.so temp_dir/lib/x86/
+cp /home/runner/work/libmpv-android-video-build/libmpv-android-video-build/libmpv/src/main/jniLibs/x86_64/libmediakitandroidhelper.so temp_dir/lib/x86_64/
+cp /home/runner/work/libmpv-android-video-build/libmpv-android-video-build/libmpv/src/main/jniLibs/x86_64/libmpv.so temp_dir/lib/x86_64/
+
+cd temp_dir
+
+echo "final build temp_dir:"
+ls -la ./lib/armeabi-v7a
+
 zip -r "full-arm64-v8a.jar"                lib/arm64-v8a
 zip -r "full-armeabi-v7a.jar"              lib/armeabi-v7a
 zip -r "full-x86.jar"                      lib/x86
 zip -r "full-x86_64.jar"                   lib/x86_64
+
+# --------------------------------------------------
 
 mkdir -p /home/runner/work/libmpv-android-video-build/libmpv-android-video-build/output
 
