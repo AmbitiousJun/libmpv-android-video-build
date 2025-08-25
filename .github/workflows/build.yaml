@@ -60,7 +60,7 @@ jobs:
           name: artifact
           path: ./output/*
       - uses: softprops/action-gh-release@v1
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/old-stable'
         with:
           draft: true
           prerelease: false

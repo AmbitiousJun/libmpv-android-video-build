@@ -21,6 +21,9 @@ cp flavors/full.sh scripts/ffmpeg.sh
 
 ./build.sh
 
+echo "libmpv build inner:"
+ls -la /home/runner/work/libmpv-android-video-build/libmpv-android-video-build/buildscripts/deps/mpv/_build
+
 # --------------------------------------------------
 
 cd deps/media-kit-android-helper
@@ -34,6 +37,10 @@ ln -sf "$(pwd)/app/build/outputs/apk/release/lib/arm64-v8a/libmediakitandroidhel
 ln -sf "$(pwd)/app/build/outputs/apk/release/lib/armeabi-v7a/libmediakitandroidhelper.so" "../../../libmpv/src/main/jniLibs/armeabi-v7a"
 ln -sf "$(pwd)/app/build/outputs/apk/release/lib/x86/libmediakitandroidhelper.so" "../../../libmpv/src/main/jniLibs/x86"
 ln -sf "$(pwd)/app/build/outputs/apk/release/lib/x86_64/libmediakitandroidhelper.so" "../../../libmpv/src/main/jniLibs/x86_64"
+
+echo "libmediakitandroidhelper dir: $(realpath ../../../libmpv/src/main/jniLibs/armeabi-v7a)"
+echo "libmediakitandroidhelper inner:"
+ls -la ../../../libmpv/src/main/jniLibs/armeabi-v7a
 
 cd ../..
 
